@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+
+# Carpeta temporal de test_sync.py
+.test-tmp/
+
+# Salida de PyInstaller
+build/
+dist/
+*.spec
+
+.venv/
+venv/
+.vscode/
+.idea/
