@@ -41,11 +41,38 @@ cd controlVersionesValhein
 pip install -r requirements.txt
 ```
 
-Y lo abres con doble clic en `ValheimSync.bat`.
+Y luego **doble clic en `CrearAccesoDirecto.bat`**. Eso te pone el acceso directo con su icono
+en el **Escritorio** y en el **menú Inicio** (escribe "ValheimSync" y sale). A partir de ahí ya
+abres la app de siempre, sin acordarte de dónde la clonaste.
+
+Si prefieres no tener acceso directo, `ValheimSync.bat` la abre igual.
 
 **Antes de nada, said tiene que invitarte** al repo de mundos
 (`Settings > Collaborators > Add people` en https://github.com/saidklelers/mundos).
 Sin eso no vas a poder bajar ni subir partidas.
+
+### Si tienes varios Python instalados
+
+`CrearAccesoDirecto.bat` se encarga: prueba uno por uno los Python del equipo y elige el que
+de verdad puede abrir la app. Si te dice que ninguno vale, es que `pip install -r requirements.txt`
+fue a parar a un Python distinto del que crees. Míralo con:
+
+```bash
+py -0p
+```
+
+Y instala las dependencias en el que quieras usar, por ejemplo:
+
+```bash
+py -3.12 -m pip install -r requirements.txt
+```
+
+Luego vuelve a ejecutar `CrearAccesoDirecto.bat`.
+
+> **Ojo con el Python de la Microsoft Store.** Su `pythonw.exe` es un archivo de 0 bytes (un
+> "alias") que funciona desde la consola pero **no** desde un acceso directo. Si solo tienes ese,
+> el acceso directo puede fallar en silencio. La solución es instalar Python desde
+> [python.org](https://python.org) y poner ahí las dependencias.
 
 ## Primera vez que lo abres
 

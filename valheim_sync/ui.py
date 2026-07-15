@@ -29,6 +29,18 @@ TEXT_DIM = "#8b93a1"
 # aqui avisamos: GitHub empieza a quejarse cerca del giga.
 REPO_WARN_MB = 700
 
+ICON_PATH = Path(__file__).resolve().parent.parent / "assets" / "valheimsync.ico"
+
+
+def apply_icon(window) -> None:
+    """El icono de la barra de tareas. Si falla, no es motivo para no abrir."""
+    if not ICON_PATH.is_file():
+        return
+    try:
+        window.iconbitmap(str(ICON_PATH))
+    except Exception:  # noqa: BLE001 — es solo cosmetico
+        pass
+
 STATUS_STYLE: dict[Status, tuple[str, str]] = {
     Status.IN_SYNC:     ("#2e7d4f", "Al día"),
     Status.LOCAL_NEWER: ("#b8791a", "Sin subir"),
@@ -376,6 +388,9 @@ class App(ctk.CTk):
         self.geometry("780x760")
         self.minsize(700, 520)
         self.configure(fg_color=BG)
+        # CTk pisa el icono al construirse; 200ms despues ya se queda puesto.
+        apply_icon(self)
+        self.after(200, lambda: apply_icon(self))
 
         self.cfg = config.load()
         self.manager: SyncManager | None = None
